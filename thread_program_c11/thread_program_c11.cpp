@@ -19,6 +19,11 @@ int _tmain(int argc, _TCHAR* argv[])
 	//使用函数自动生成的对象
 		thread myfirst((fun));
 		thread myfirst{ fun };
+	//用function也一样
+		function<void(void)> thread_function = fun;
+		thread myfirst(thread_function);
+
+
 	//向线程函数传递参数
 	 for (int i = 0; i < 10; i++)cout << "mymain" << endl;
 
