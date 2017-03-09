@@ -6,17 +6,27 @@
 #include<iostream>
 using namespace std;
 
+void fun()
+{
+	for (int i = 0; i < 10; i++)cout << "myfirst" << endl;
+
+}
 int _tmain(int argc, _TCHAR* argv[])
 {
-	thread my_first([]{ for (int i = 0; i < 10; i++)cout << "myfirst" << endl; });
-
+	//用函数对象启动线程
+	//直接用lambda函数
+		thread my_first([]{ for (int i = 0; i < 10; i++)cout << "myfirst" << endl; });
+	//使用函数自动生成的对象
+		thread myfirst((fun));
+		thread myfirst{ fun };
+	//向线程函数传递参数
 	 for (int i = 0; i < 10; i++)cout << "mymain" << endl;
 
 
 	
 
 
-	my_first.join();
+	myfirst.join();
 	return 0;
 }
 
